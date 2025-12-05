@@ -1,0 +1,225 @@
+html {
+    font-size: 14px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.background-slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.background-slideshow img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0; /* Start invisible */
+    transform: translateX(100%); /* Start off-screen to the right */
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.background-slideshow img:first-child {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.background-slideshow img.active {
+    transform: translateX(0);
+    opacity: 1; /* Fade in and slide in */
+}
+
+.background-slideshow img.prev {
+    transform: translateX(-100%);
+    opacity: 0; /* Fade out and slide out */
+}
+
+.overlay {
+    position: absolute;
+    width: 80%;
+    max-width: 600px;
+    height: 80%;
+    max-height: 70vh;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    overflow: auto;
+    display: flex; /* Make overlay a flex container */
+    flex-direction: column; /* Stack children vertically */
+
+    /* Default: Centered for mobile/tablet */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (min-width: 768px) { /* Desktop screens */
+    .overlay:not(.draggable-active) { /* Apply only when not draggable */
+        top: 10%;
+        left: 10%;
+        transform: none;
+    }
+}
+
+.title-overlay-box h3 {
+  font-size: 1.5rem; /* Make h3 same size as h1 */
+}
+
+.title-overlay-box h1 a,
+.title-overlay-box h3 a {
+  text-decoration: none;
+  color: inherit; /* Inherit color from parent */
+}
+
+
+
+#overlay-header {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    font-size: 12px;
+    color: #333;
+}
+
+#overlay-header.draggable {
+    cursor: move;
+}
+
+.content {
+    padding: 20px;
+    flex-grow: 1; /* Allow content to grow and fill space */
+    display: flex; /* Make content a flex container */
+    flex-direction: column; /* Stack children vertically */
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+h1 { font-size: 1.8rem; }
+
+.hidden-h1 {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.h1-style {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.2rem; }
+p, li { font-size: 1rem; line-height: 1.5; }
+
+a {
+    text-decoration: none;
+    color: #218838;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #1e7e34;
+}
+
+.image-with-title {
+  position: relative;
+  margin-bottom: 0; /* Remove margin-bottom */
+  flex-grow: 1; /* Allow image-with-title to grow and fill space */
+}
+
+.profile-single-image {
+  display: block;
+  width: 100%;
+  height: 100%; /* Make height 100% of parent */
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.image-with-title h1 {
+  position: static; /* Reset positioning */
+  text-align: left;
+  margin: 0;
+  color: #333;
+  font-size: 1.5rem;
+  z-index: 10;
+  position: relative;
+  margin-bottom: 10px; /* Add margin-bottom for spacing */
+}
+
+.image-with-title h3 {
+  position: static; /* Reset positioning */
+  text-align: left;
+  margin: 0;
+  color: #333;
+  font-size: 1rem;
+}
+
+.title-overlay-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-sizing: border-box;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.title-overlay-box h1 a {
+  color: #218838; /* Green color for links */
+  text-decoration: none; /* No underline by default */
+}
+
+.title-overlay-box h1 a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.social-links {
+  display: flex;
+  flex-direction: row; /* Display horizontally */
+  justify-content: center; /* Center the links */
+  gap: 20px; /* Space between links */
+  margin-bottom: 20px; /* Space below the links */
+  flex-wrap: wrap; /* Allow links to wrap on smaller screens */
+  margin-top: 20px; /* Space above the links */
+}
+
+.social-links a {
+  color: #218838; /* Green color for links */
+  text-decoration: none; /* No underline by default */
+  font-weight: bold;
+  display: flex; /* Make link a flex container */
+  align-items: center; /* Vertically align icon and text */
+  gap: 5px; /* Space between icon and text */
+}
+
+.social-links a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.social-icon {
+  width: 32px; /* Set a fixed size for the icons */
+  height: 32px;
+  vertical-align: middle; /* Align icon with text if any */
+}
